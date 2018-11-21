@@ -1,0 +1,29 @@
+package csc.hfz.taotao.portalcontroller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import csc.hfz.taotao.portalpojo.cartItem;
+import csc.hfz.taotao.portalservice.CartService;
+
+@Controller
+@RequestMapping("/order")
+public class OrderController {
+    
+	@Autowired
+	private CartService cartService;
+	
+	@RequestMapping("order-cart")
+	public String getOrderItems(HttpServletRequest request,HttpServletResponse response,Model model){
+	    List<cartItem> list=cartService.getCartItemslist(request, response);
+		model.addAttribute("cartList", list);
+		return "order-cart";
+	}
+}

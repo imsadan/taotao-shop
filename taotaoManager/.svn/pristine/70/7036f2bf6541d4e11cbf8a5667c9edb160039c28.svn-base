@@ -1,0 +1,22 @@
+package com.taotao.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.taotao.commons.TaotaoResult;
+import com.taotao.mapper.TbItemMapper;
+
+@Service
+public class ItemEditsImpl implements ItemEdits{
+    
+	@Autowired
+	private TbItemMapper tbItemMapper;
+	
+	//删除指定商品
+	@Override
+	public TaotaoResult deleteItem(long id) {
+		tbItemMapper.deleteByPrimaryKey(id);
+		return TaotaoResult.ok();
+	}
+
+}

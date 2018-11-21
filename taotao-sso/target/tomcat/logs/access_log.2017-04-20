@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [20/Apr/2017:16:08:15 +0800] "GET /user/check/zhangsan/1 HTTP/1.1" 200 49 http-bio-8084-exec-1 774
+0:0:0:0:0:0:0:1 - - [20/Apr/2017:16:08:16 +0800] "GET /favicon.ico HTTP/1.1" 404 949 http-bio-8084-exec-2 5

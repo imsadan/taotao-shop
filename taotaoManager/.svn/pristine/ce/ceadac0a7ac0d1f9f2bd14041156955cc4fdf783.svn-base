@@ -1,0 +1,7 @@
+package com.taotao.service;
+
+import com.taotao.commons.TaotaoResult;
+
+interface ItemPram {
+    TaotaoResult SelectItemParm(long parmId);
+}

@@ -1,0 +1,10 @@
+package com.taotao.service;
+
+import com.taotao.commons.TaotaoResult;
+import com.taotao.pojo.TbItemParam;
+
+public interface ItemParm {
+    TaotaoResult SelectItemParm(long parmId);
+    
+    TaotaoResult insertItemParam(TbItemParam param);
+}

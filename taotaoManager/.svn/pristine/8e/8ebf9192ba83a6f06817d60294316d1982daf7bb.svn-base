@@ -1,0 +1,9 @@
+package com.taotao.service;
+
+import com.taotao.commons.EUdatePage;
+import com.taotao.pojo.TbItem;
+
+public interface showItem {
+    TbItem select(long tbitemId);
+    EUdatePage getsEUdatePage(int page,int rows);
+}

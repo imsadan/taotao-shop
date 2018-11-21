@@ -1,0 +1,20 @@
+package com.taotao.service;
+
+import java.util.List;
+
+import com.taotao.commons.EUdatePage;
+import com.taotao.commons.TaotaoResult;
+import com.taotao.commons.TreeNode;
+
+public interface contentCateService {
+	//显示列
+    List<TreeNode> getContentCatList(long parentId);
+    //添加列值
+    TaotaoResult createContentCat(long parentId,String name);
+    //删除
+    TaotaoResult removeContentCat(long id);
+    //更改编辑
+    TaotaoResult updateContentCat(long id,String name);
+    //内容管理
+    EUdatePage getContentCatsList(long id,int page, int rows);
+}

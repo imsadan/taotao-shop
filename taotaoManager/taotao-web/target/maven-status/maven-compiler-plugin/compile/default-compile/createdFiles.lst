@@ -1,0 +1,7 @@
+com\taotao\controller\ItemParmController.class
+com\taotao\controller\PicloadController.class
+com\taotao\controller\contentCategoryController.class
+com\taotao\controller\RestController.class
+com\taotao\controller\contentQueryController.class
+com\taotao\controller\showCatItemController.class
+com\taotao\controller\showController.class

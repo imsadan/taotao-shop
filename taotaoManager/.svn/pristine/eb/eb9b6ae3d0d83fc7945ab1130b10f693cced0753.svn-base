@@ -1,0 +1,148 @@
+package com.taotao.service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.taotao.commons.EUdatePage;
+import com.taotao.commons.TaotaoResult;
+import com.taotao.commons.TreeNode;
+import com.taotao.commons.ftp.IDUtils;
+import com.taotao.mapper.TbItemCatMapper;
+import com.taotao.mapper.TbItemDescMapper;
+import com.taotao.mapper.TbItemMapper;
+import com.taotao.mapper.TbItemParamItemMapper;
+import com.taotao.mapper.TbItemParamMapper;
+import com.taotao.pojo.TbItem;
+import com.taotao.pojo.TbItemCat;
+import com.taotao.pojo.TbItemCatExample;
+import com.taotao.pojo.TbItemCatExample.Criteria;
+import com.taotao.pojo.TbItemDesc;
+import com.taotao.pojo.TbItemExample;
+import com.taotao.pojo.TbItemParam;
+import com.taotao.pojo.TbItemParamExample;
+import com.taotao.pojo.TbItemParamItem;
+import com.taotao.pojo.TbItemParamItemExample;
+
+@Service
+public class showItemImpl implements showItem {
+
+	@Autowired
+	private TbItemMapper tbItemMapper;
+	@Autowired
+	private TbItemCatMapper tbItemCatMapper;
+	@Autowired
+	private TbItemDescMapper tbItemDescMapper;
+	@Autowired
+	private TbItemParamItemMapper tbItemParamItemMapper;
+	@Autowired
+	private TbItemParamMapper tbItemParamMapper;
+
+	// 选择
+	public TbItem select(long tbitemId) {
+		return tbItemMapper.selectByPrimaryKey(tbitemId);
+	}
+
+	// 分页1
+	@Override
+	public EUdatePage getsEUdatePage(int page, int rows) {
+		TbItemExample example = new TbItemExample();
+		// 分页处理
+		PageHelper.startPage(page, rows);
+		// 查询
+		List<TbItem> list = tbItemMapper.selectByExample(example);
+		EUdatePage result = new EUdatePage();
+		result.setRows(list);
+		// 取值
+		PageInfo<TbItem> pageInfo = new PageInfo<>(list);
+		result.setTotal((int) pageInfo.getTotal());
+		return result;
+	}
+
+	// 添加的一个tree图
+	@Override
+	public List<TreeNode> getItemsList(long id) {
+		TbItemCatExample example = new TbItemCatExample();
+		// 设置查询的条件
+		Criteria criteria = example.createCriteria();
+		criteria.andParentIdEqualTo(id);
+		// 执行查询
+		List<TbItemCat> list = tbItemCatMapper.selectByExample(example);
+		// 转换成treenode可用列表
+		List<TreeNode> result = new ArrayList<>();
+		for (TbItemCat tbItemCat : list) {
+			TreeNode treeNode = new TreeNode(tbItemCat.getId(),
+					tbItemCat.getName(), tbItemCat.getIsParent() ? "closed"
+							: "open");
+			result.add(treeNode);
+		}
+
+		return result;
+	}
+
+	// 提交上架商品
+	@Override
+	public TaotaoResult insertItem(TbItem item, String Desc, String itemParam) {
+		// 补全数据库内容
+		Long itemId = IDUtils.genItemId();
+		item.setId(itemId);
+		item.setStatus((byte) 1);
+		item.setCreated(new Date());
+		item.setUpdated(new Date());
+		// 提交数据库
+		tbItemMapper.insert(item);
+		// 前台数据描述提交
+		TaotaoResult result = insertItemDesc(itemId, Desc);
+
+		// 提交产品规格
+		result = ItemParam(itemId, itemParam);
+
+		return TaotaoResult.ok();
+	}
+
+	// 提交商品描述
+	private TaotaoResult insertItemDesc(long itemID, String Desc) {
+		TbItemDesc tbItemDesc = new TbItemDesc();
+		tbItemDesc.setItemDesc(Desc);
+		tbItemDesc.setItemId(itemID);
+		tbItemDesc.setCreated(new Date());
+		tbItemDesc.setUpdated(new Date());
+
+		tbItemDescMapper.insert(tbItemDesc);
+		return TaotaoResult.ok();
+	}
+
+	// 添加提交产品参数方法类
+	private TaotaoResult ItemParam(long id, String param) {
+		TbItemParamItem tbItemParamItem = new TbItemParamItem();
+		tbItemParamItem.setId(id);
+		tbItemParamItem.setParamData(param);
+		tbItemParamItem.setCreated(new Date());
+		tbItemParamItem.setUpdated(new Date());
+		tbItemParamItemMapper.insert(tbItemParamItem);
+		return TaotaoResult.ok();
+
+	}
+
+	@Override
+	public EUdatePage getItemParamsList(int page, int rows) {
+		TbItemParamExample example = new TbItemParamExample();
+		// 分页处理
+		PageHelper.startPage(page, rows);
+		// 查询
+		List<TbItemParam> list =tbItemParamMapper.selectByExample(example);
+		EUdatePage result = new EUdatePage();
+		result.setRows(list);
+		// 取值
+		PageInfo<TbItemParam> pageInfo = new PageInfo<>(list);
+		result.setTotal((int) pageInfo.getTotal());
+		return result;
+
+	}
+
+}

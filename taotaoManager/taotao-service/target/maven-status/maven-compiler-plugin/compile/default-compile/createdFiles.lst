@@ -1,0 +1,15 @@
+com\taotao\service\showItemImpl.class
+com\taotao\service\PictureServiceImpl.class
+com\taotao\service\contentQueryList.class
+com\taotao\service\ItemEdits.class
+com\taotao\service\showItem.class
+com\taotao\service\RestEdits.class
+com\taotao\service\contentQueryListService.class
+com\taotao\service\ItemEditsImpl.class
+com\taotao\service\RestEditsImpl.class
+com\taotao\service\contentCateServiceImpl.class
+com\taotao\service\PictureService.class
+com\taotao\service\contentCateService.class
+com\taotao\service\ItemParmImpl.class
+com\taotao\service\IdsForm.class
+com\taotao\service\ItemParm.class

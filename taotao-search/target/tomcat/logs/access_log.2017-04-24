@@ -1,0 +1,9 @@
+127.0.0.1 - - [24/Apr/2017:10:26:43 +0800] "GET /search/query?page=1&q=%E6%89%8B%E6%9C%BA HTTP/1.1" 200 20975 http-bio-8083-exec-1 1811
+127.0.0.1 - - [24/Apr/2017:10:29:09 +0800] "GET /search/query?page=1&q=%E6%89%8B%E6%9C%BA HTTP/1.1" 200 20975 http-bio-8083-exec-3 140
+127.0.0.1 - - [24/Apr/2017:10:34:15 +0800] "GET /search/query?page=1&q=%E6%89%8B%E6%9C%BA HTTP/1.1" 200 20975 http-bio-8083-exec-5 79
+127.0.0.1 - - [24/Apr/2017:11:01:28 +0800] "GET /search/query?page=1&q=%E6%89%8B%E6%9C%BA HTTP/1.1" 200 20975 http-bio-8083-exec-7 626
+127.0.0.1 - - [24/Apr/2017:15:59:56 +0800] "GET /search/query?page=1&q=LG+G3 HTTP/1.1" 200 25173 http-bio-8083-exec-9 190
+127.0.0.1 - - [24/Apr/2017:16:30:30 +0800] "GET /search/query?page=1&q=LG+G3 HTTP/1.1" 200 25173 http-bio-8083-exec-1 67
+127.0.0.1 - - [24/Apr/2017:18:29:26 +0800] "GET /search/query?page=1&q=LG+G3 HTTP/1.1" 200 25173 http-bio-8083-exec-3 66
+127.0.0.1 - - [24/Apr/2017:18:36:30 +0800] "GET /search/query?page=1&q=LG+G3 HTTP/1.1" 200 25173 http-bio-8083-exec-5 43
+127.0.0.1 - - [24/Apr/2017:18:49:07 +0800] "GET /search/query?page=1&q=apple HTTP/1.1" 200 19883 http-bio-8083-exec-7 53

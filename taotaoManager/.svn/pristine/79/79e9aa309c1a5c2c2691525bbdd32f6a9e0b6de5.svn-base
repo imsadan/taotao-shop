@@ -1,0 +1,26 @@
+package com.taotao.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.taotao.commons.TaotaoResult;
+import com.taotao.service.ItemParm;
+
+
+@Controller
+@RequestMapping("/item/param")
+public class ItemParmController {
+     
+	@Autowired
+	private ItemParm itemParm;
+	
+	@RequestMapping("/query/itemcatid/{id}")
+	public TaotaoResult showItemParam(@PathVariable long id){
+		TaotaoResult result=itemParm.SelectItemParm(id);
+		return result;
+	}
+	
+	
+}
